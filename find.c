@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "print.h"
 
 char	**g_map;
 char	*g_info;
@@ -22,7 +23,7 @@ int		g_max_r = 0;
 int		g_max_c = 0;
 int		g_max_size = 0;
 
-int		print_map(void)
+int		print_map_dev(char **dp)
 {
 	int	r;
 	int	c;
@@ -39,6 +40,18 @@ int		print_map(void)
 		r += 1;
 		printf("\n");
 	}
+    r = 0;
+    while (r < g_row)
+    {
+        c = 0;
+        while (c < g_col)
+        {
+            printf("%d", dp[r][c]);
+            c += 1;
+        }
+        r += 1;
+        printf("\n");
+    }
 	return (0);
 }
 
@@ -47,6 +60,7 @@ char	**init_dp(char **dp)
 	int	i;
 	int	j;
 
+	printf("in init_dp, g_row : %d, g_col : %d\n", g_row, g_col);
 	dp = malloc(sizeof(char *) * (g_row + 1));
 	i = 0;
 	while (i < g_row)
@@ -74,27 +88,52 @@ int		find_all(char **dp)
 	int	c;
 	int	min;
 
-	r = 0;
-	while (++r < g_row)
+    printf("in find_all, g_row : %d, g_col : %d\n", g_row, g_col);
+	r = 1;
+	while (r < g_row)
 	{
-		c = 0;
-		while (++c < g_col)
+		c = 1;
+		while (c < g_col)
 		{
-			if (dp[r][c] == 0)
-				continue;
-			min = 123456789;
-			min = min < dp[r - 1][c] ? min : dp[r - 1][c];
-			min = min < dp[r][c - 1] ? min : dp[r][c - 1];
-			min = min < dp[r - 1][c - 1] ? min : dp[r - 1][c - 1];
-			dp[r][c] = min + 1;
-			if (dp[r][c] <= g_max_size)
-				continue;
-			g_max_size = dp[r][c];
-			g_max_r = r;
-			g_max_c = c;
+			if (dp[r][c] != 0) {
+                min = 123456789;
+                min = min < dp[r - 1][c] ? min : dp[r - 1][c];
+                min = min < dp[r][c - 1] ? min : dp[r][c - 1];
+                min = min < dp[r - 1][c - 1] ? min : dp[r - 1][c - 1];
+                dp[r][c] = min + 1;
+            }
+			c++;
 		}
+		r++;
 	}
 	return (0);
+}
+
+int		find_biggest(char **dp)
+{
+    int	r;
+    int	c;
+    int	min;
+
+    printf("in find_biggest, g_row : %d, g_col : %d\n", g_row, g_col);
+    g_max_size = 0;
+    r = 0;
+    while (r < g_row)
+    {
+        c = 0;
+        while (c < g_col)
+        {
+            if (dp[r][c] > g_max_size)
+            {
+                g_max_size = dp[r][c];
+                g_max_r = r;
+                g_max_c = c;
+            }
+            c++;
+        }
+        r++;
+    }
+    return (0);
 }
 
 int		fill_square(void)
@@ -102,12 +141,15 @@ int		fill_square(void)
 	int	r;
 	int	c;
 
+	printf("g_max_r : %d, g_max_c : %d\n", g_max_r, g_max_c);
+	printf("g_max_size : %d\n", g_max_size);
 	r = g_max_r - g_max_size + 1;
 	while (r <= g_max_r)
 	{
 		c = g_max_c - g_max_size + 1;
 		while (c <= g_max_c)
 		{
+		    printf("g_map[%d][%d] to %c\n", r, c, g_info[g_info_len - 1]);
 			g_map[r][c] = g_info[g_info_len - 1];
 			c += 1;
 		}
@@ -123,8 +165,9 @@ int		find_square(void)
 	dp = NULL;
 	dp = init_dp(dp);
 	find_all(dp);
+	find_biggest(dp);
 	fill_square();
-	print_map();
+	print_map(dp);
 	g_max_r = 0;
 	g_max_c = 0;
 	g_max_size = 0;

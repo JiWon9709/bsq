@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 char	*g_info;
 int		g_info_len;
 int		g_row;
@@ -26,26 +28,12 @@ int		is_charset(char c)
 
 int		is_valid_info(void)
 {
-	int	i;
-
-	i = 0;
-	while (i < g_info_len - 2)
-	{
-		if (g_info[i] < '0' || g_info[i] > '9')
-			return (0);
-	}
-	if (g_info[i] == g_info[i + 1])
-		return (0);
-	return (1);
-}
-
-int		is_valid_row(void)
-{
 	int	row;
 	int	idx;
 
 	row = g_row;
 	idx = g_info_len - 4;
+	printf("%c %c %c\n", g_info[idx+1], g_info[idx+2], g_info[idx+3]);
 	if (g_info[idx] < '0' || g_info[idx] > '9')
 		return (0);
 	if (g_info[idx + 1] == g_info[idx + 2])

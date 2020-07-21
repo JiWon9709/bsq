@@ -14,6 +14,6 @@
 # define VALID_H
 
 int	is_charset(char c);
-int	is_valid_row(void);
+int is_valid_info(void);
 
 #endif

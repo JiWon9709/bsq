@@ -12,8 +12,6 @@
 
 #include <stdlib.h>
 #include <fcntl.h>
-#include <unistd.h>
-#include "util.h"
 #include "valid.h"
 
 char	**g_map;
@@ -83,7 +81,7 @@ int		count_col(int fd)
 		}
 		col += 1;
 	}
-	if (!is_valid_row())
+	if (!is_valid_info())
 		return (1);
 	return (0);
 }
