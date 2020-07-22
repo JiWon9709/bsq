@@ -6,7 +6,7 @@
 /*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 23:32:13 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/23 06:10:16 by yeonkim          ###   ########.fr       */
+/*   Updated: 2020/07/23 06:12:38 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int		fill_square(void)
 int		find_square(void)
 {
 	char	**dp;
+	int		row;
 
 	dp = NULL;
 	dp = init_dp(dp);
@@ -130,6 +131,10 @@ int		find_square(void)
 	find_biggest(dp);
 	fill_square();
 	print_map();
+	row = 0;
+	while (row < g_row)
+		free(dp[row++]);
+	free(dp);
 	g_max_r = 0;
 	g_max_c = 0;
 	g_max_size = 0;
