@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "valid.h"
@@ -11,14 +10,22 @@ int     g_info_len;
 int     g_row;
 int     g_col;
 
+int		ft_strlen(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
 char	*ft_strdup(char *src)
 {
 	char	*dst;
 	int		i;
 
-	i = 0;
-	while (src[i])
-		i++;
+	i = ft_strlen(src);
 	dst = malloc(sizeof(char) * (i + 1));
 	i = 0;
 	while (src[i])
@@ -38,7 +45,7 @@ int     get_row(void)
 
     i = 0;
     ret = 0;
-    max = strlen(g_info) - 3;
+    max = ft_strlen(g_info) - 3;
     printf("max is %d\n", max);
     while (i < max)
     {
@@ -65,8 +72,8 @@ int     read_info(void)
     }
     buf[i] = 0;
     printf("buf : %s, %d\n", buf, strlen(buf));
-    g_info = strdup(buf);
-    g_info_len = strlen(buf);
+    g_info = ft_strdup(buf);
+    g_info_len = ft_strlen(buf);
     printf("g_info : %s, %d\n", g_info, strlen(g_info));
     g_row = get_row();
     printf("g_row : %d\n", g_row);
@@ -120,7 +127,7 @@ int     read_one_line(void)
     }
 	buf[i] = 0;
 	str = ft_strdup(buf);
-    g_col = strlen(str);
+    g_col = ft_strlen(str);
     printf("g_col : %d\n", g_col);
     g_map[0] = malloc(sizeof(char) * g_col);
     i = 0;
