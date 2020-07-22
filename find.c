@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeonkim <yeonkim@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/20 13:53:38 by yeonkim           #+#    #+#             */
-/*   Updated: 2020/07/22 22:59:55 by jyou             ###   ########.fr       */
+/*   Created: 2020/07/22 23:32:13 by jyou              #+#    #+#             */
+/*   Updated: 2020/07/22 23:32:35 by jyou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char	**init_dp(char **dp)
 	int	i;
 	int	j;
 
-	printf("in init_dp, g_row : %d, g_col : %d\n", g_row, g_col);
 	dp = malloc(sizeof(char *) * (g_row + 1));
 	i = 0;
 	while (i < g_row)
@@ -62,13 +61,14 @@ int		find_all(char **dp)
 		c = 1;
 		while (c < g_col)
 		{
-			if (dp[r][c] != 0) {
-                min = 123456789;
-                min = min < dp[r - 1][c] ? min : dp[r - 1][c];
-                min = min < dp[r][c - 1] ? min : dp[r][c - 1];
-                min = min < dp[r - 1][c - 1] ? min : dp[r - 1][c - 1];
-                dp[r][c] = min + 1;
-            }
+			if (dp[r][c] != 0)
+			{
+				min = 123456789;
+				min = min < dp[r - 1][c] ? min : dp[r - 1][c];
+				min = min < dp[r][c - 1] ? min : dp[r][c - 1];
+				min = min < dp[r - 1][c - 1] ? min : dp[r - 1][c - 1];
+				dp[r][c] = min + 1;
+			}
 			c++;
 		}
 		r++;
@@ -78,28 +78,28 @@ int		find_all(char **dp)
 
 int		find_biggest(char **dp)
 {
-    int	r;
-    int	c;
-    int	min;
+	int	r;
+	int	c;
+	int	min;
 
-    g_max_size = 0;
-    r = 0;
-    while (r < g_row)
-    {
-        c = 0;
-        while (c < g_col)
-        {
-            if (dp[r][c] > g_max_size)
-            {
-                g_max_size = dp[r][c];
-                g_max_r = r;
-                g_max_c = c;
-            }
-            c++;
-        }
-        r++;
-    }
-    return (0);
+	g_max_size = 0;
+	r = 0;
+	while (r < g_row)
+	{
+		c = 0;
+		while (c < g_col)
+		{
+			if (dp[r][c] > g_max_size)
+			{
+				g_max_size = dp[r][c];
+				g_max_r = r;
+				g_max_c = c;
+			}
+			c++;
+		}
+		r++;
+	}
+	return (0);
 }
 
 int		fill_square(void)

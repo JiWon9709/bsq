@@ -6,7 +6,7 @@
 /*   By: yeonkim <yeonkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 17:43:18 by yeonkim           #+#    #+#             */
-/*   Updated: 2020/07/22 22:27:58 by jyou             ###   ########.fr       */
+/*   Updated: 2020/07/22 23:18:10 by jyou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int		is_valid_info(void)
 
 	row = g_row;
 	idx = g_info_len - 4;
-	printf("%c %c %c\n", g_info[idx+1], g_info[idx+2], g_info[idx+3]);
 	if (g_info[idx] < '0' || g_info[idx] > '9')
 		return (0);
 	if (g_info[idx + 1] == g_info[idx + 2])
