@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stdin.h                                            :+:      :+:    :+:   */
+/*   util.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/22 22:54:25 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/22 22:55:04 by jyou             ###   ########.fr       */
+/*   Created: 2020/07/22 22:41:58 by jyou              #+#    #+#             */
+/*   Updated: 2020/07/22 22:43:46 by jyou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STDIN_H
-# define STDIN_H
+#ifndef UTIL_H
+# define UTIL_H
 
-int		ft_stdin(void);
+int		ft_strlen(char *str);
+char	*ft_strdup(char *str);
 
 #endif

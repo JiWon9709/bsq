@@ -1,18 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stdin.h                                            :+:      :+:    :+:   */
+/*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/22 22:54:25 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/22 22:55:04 by jyou             ###   ########.fr       */
+/*   Created: 2020/07/22 22:38:08 by jyou              #+#    #+#             */
+/*   Updated: 2020/07/22 22:41:25 by jyou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STDIN_H
-# define STDIN_H
+#include <unistd.h>
 
-int		ft_stdin(void);
+int		ft_strlen(char *str)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strdup(char *src)
+{
+	char	*dst;
+	int		i;
+
+	i = ft_strlen(src);
+	dst = malloc(sizeof(char) * (i + 1));
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = 0;
+	return (dst);
+}
