@@ -6,12 +6,11 @@
 /*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:53:23 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/22 23:50:07 by jyou             ###   ########.fr       */
+/*   Updated: 2020/07/23 06:08:56 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include "valid.h"
 #include "util.h"
@@ -59,10 +58,7 @@ int		read_info(void)
 	g_info_len = ft_strlen(buf);
 	g_row = get_row();
 	if (!is_valid_info())
-	{
-		printf("is not valid info!\n");
 		return (1);
-	}
 	return (0);
 }
 
