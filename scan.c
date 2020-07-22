@@ -6,7 +6,7 @@
 /*   By: yeonkim <yeonkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:31:02 by yeonkim           #+#    #+#             */
-/*   Updated: 2020/07/23 00:31:51 by yeonkim          ###   ########.fr       */
+/*   Updated: 2020/07/23 07:04:37 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ int		count_row(int fd)
 	g_info = malloc(sizeof(char) * (g_info_len + 1));
 	row = 0;
 	while (read(fd, &c, 1))
-	{
 		if (c == '\n')
 			row += 1;
-	}
+	if (row == 0)
+		return (1);
 	g_map = malloc(sizeof(char *) * (row + 1));
-	g_map[row] = NULL;
 	g_row = row;
 	return (0);
 }
