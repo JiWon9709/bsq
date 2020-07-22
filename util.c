@@ -6,11 +6,12 @@
 /*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:38:08 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/22 22:41:25 by jyou             ###   ########.fr       */
+/*   Updated: 2020/07/22 22:58:45 by jyou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 
 int		ft_strlen(char *str)
 {

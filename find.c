@@ -6,7 +6,7 @@
 /*   By: yeonkim <yeonkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 13:53:38 by yeonkim           #+#    #+#             */
-/*   Updated: 2020/07/22 22:09:24 by jyou             ###   ########.fr       */
+/*   Updated: 2020/07/22 22:59:55 by jyou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int		find_all(char **dp)
 	int	c;
 	int	min;
 
-    printf("in find_all, g_row : %d, g_col : %d\n", g_row, g_col);
 	r = 1;
 	while (r < g_row)
 	{
@@ -83,7 +82,6 @@ int		find_biggest(char **dp)
     int	c;
     int	min;
 
-    printf("in find_biggest, g_row : %d, g_col : %d\n", g_row, g_col);
     g_max_size = 0;
     r = 0;
     while (r < g_row)
@@ -109,15 +107,12 @@ int		fill_square(void)
 	int	r;
 	int	c;
 
-	printf("g_max_r : %d, g_max_c : %d\n", g_max_r, g_max_c);
-	printf("g_max_size : %d\n", g_max_size);
 	r = g_max_r - g_max_size + 1;
 	while (r <= g_max_r)
 	{
 		c = g_max_c - g_max_size + 1;
 		while (c <= g_max_c)
 		{
-		    printf("g_map[%d][%d] to %c\n", r, c, g_info[g_info_len - 1]);
 			g_map[r][c] = g_info[g_info_len - 1];
 			c += 1;
 		}
