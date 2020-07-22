@@ -6,7 +6,7 @@
 /*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:53:23 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/23 06:31:07 by yeonkim          ###   ########.fr       */
+/*   Updated: 2020/07/23 06:38:20 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int		read_info(void)
 	buf[i] = 0;
 	g_info = ft_strdup(buf);
 	g_info_len = ft_strlen(buf);
-	g_row = get_row();
+	if ((g_row = get_row()) < 1)
+		return (1);
 	if (!is_valid_info())
 		return (1);
 	return (0);
@@ -94,7 +95,6 @@ int		read_one_line(void)
 	int		i;
 	char	c;
 	char	buf[BUFF];
-	char	*str;
 
 	i = 0;
 	while (read(0, &c, 1) > 0)
@@ -104,16 +104,14 @@ int		read_one_line(void)
 		buf[i++] = c;
 	}
 	buf[i] = 0;
-	str = ft_strdup(buf);
-	g_col = ft_strlen(str);
+	g_col = ft_strlen(buf);
 	g_map[0] = malloc(sizeof(char) * g_col);
 	i = 0;
 	while (i < g_col)
 	{
-		g_map[0][i] = str[i];
+		g_map[0][i] = buf[i];
 		i++;
 	}
-	free(str);
 	return (0);
 }
 
