@@ -6,7 +6,7 @@
 /*   By: yeonkim <yeonkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:25:59 by yeonkim           #+#    #+#             */
-/*   Updated: 2020/07/22 23:40:42 by jyou             ###   ########.fr       */
+/*   Updated: 2020/07/23 00:19:48 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ int		main(int argc, char **argv)
 		if (ft_stdin() == 0)
 			find_square();
 		else
-		{
-			print_error();
-			return (0);
-		}
+			return (print_error());
 		free_map();
 	}
 	while (i < argc)

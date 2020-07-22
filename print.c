@@ -6,7 +6,7 @@
 /*   By: yeonkim <yeonkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 13:11:45 by yeonkim           #+#    #+#             */
-/*   Updated: 2020/07/22 23:17:40 by jyou             ###   ########.fr       */
+/*   Updated: 2020/07/23 00:19:53 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ char	**g_map;
 int		g_row;
 int		g_col;
 
-void	print_error(void)
+int		print_error(void)
 {
 	write(2, "map error\n", 10);
+	return (0);
 }
 
 void	print_map(void)

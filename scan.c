@@ -6,12 +6,13 @@
 /*   By: yeonkim <yeonkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:31:02 by yeonkim           #+#    #+#             */
-/*   Updated: 2020/07/20 18:46:47 by yeonkim          ###   ########.fr       */
+/*   Updated: 2020/07/23 00:31:51 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <fcntl.h>
+#include <unistd.h>
 #include "valid.h"
 
 char	**g_map;
@@ -46,13 +47,8 @@ int		count_row(int fd)
 	return (0);
 }
 
-int		count_col(int fd)
+int		count_col(int fd, char c, int row, int col)
 {
-	char	c;
-	int		row;
-	int		col;
-
-	row = 0;
 	while (read(fd, &c, 1))
 	{
 		if (c == '\n')
@@ -62,9 +58,7 @@ int		count_col(int fd)
 	if (row < 4)
 		return (1);
 	row = 0;
-	col = 0;
-	while (read(fd, &c, 1))
-	{
+	while (read(fd, &c, 1) && (++col || 1))
 		if (c == '\n')
 		{
 			if (g_col != 0 && g_col != col)
@@ -79,11 +73,7 @@ int		count_col(int fd)
 			row += 1;
 			col = 0;
 		}
-		col += 1;
-	}
-	if (!is_valid_info())
-		return (1);
-	return (0);
+	return (is_valid_info() ? 0 : 1);
 }
 
 int		write_map(int fd)
@@ -93,10 +83,8 @@ int		write_map(int fd)
 	char	c;
 
 	while (read(fd, &c, 1))
-	{
 		if (c == '\n')
 			break ;
-	}
 	row = 0;
 	col = 0;
 	while (read(fd, &c, 1))
@@ -145,7 +133,7 @@ int		scan_map(char *path)
 			return (1);
 	if (count_row(fd[0]) > 0)
 		return (2);
-	if (count_col(fd[1]) > 0)
+	if (count_col(fd[1], 0, 0, -1) > 0)
 		return (3);
 	if (write_map(fd[2]) > 0)
 		return (4);
