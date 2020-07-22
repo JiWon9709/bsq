@@ -6,11 +6,10 @@
 /*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 23:32:13 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/22 23:32:35 by jyou             ###   ########.fr       */
+/*   Updated: 2020/07/23 06:10:16 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "print.h"
 

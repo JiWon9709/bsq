@@ -6,11 +6,9 @@
 /*   By: yeonkim <yeonkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 17:43:18 by yeonkim           #+#    #+#             */
-/*   Updated: 2020/07/22 23:18:10 by jyou             ###   ########.fr       */
+/*   Updated: 2020/07/23 06:10:02 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 char	*g_info;
 int		g_info_len;
