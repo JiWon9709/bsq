@@ -6,7 +6,7 @@
 /*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:53:23 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/23 06:26:05 by yeonkim          ###   ########.fr       */
+/*   Updated: 2020/07/23 06:31:07 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ int		read_map(void)
 	{
 		if (c == '\n')
 		{
-			read(0, &c, 1);
 			i += 1;
 			if (j != g_col)
 				return (1);
 			j = 0;
 			if (i >= g_row)
 				return (0);
+			read(0, &c, 1);
 		}
 		if (j >= g_col)
 			return (1);
