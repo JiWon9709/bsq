@@ -6,7 +6,7 @@
 /*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:53:23 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/23 06:17:53 by yeonkim          ###   ########.fr       */
+/*   Updated: 2020/07/23 06:26:05 by yeonkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int		read_map(void)
 		{
 			read(0, &c, 1);
 			i += 1;
+			if (j != g_col)
+				return (1);
 			j = 0;
 			if (i >= g_row)
 				return (0);
@@ -125,9 +127,12 @@ int		ft_stdin(void)
 	g_map = malloc(sizeof(char *) * g_row);
 	read_one_line();
 	i = 1;
-	while (i < g_row)
-		g_map[i++] = malloc(sizeof(char) * g_col);
-	if (read_map() > 0)
-		return (1);
+	if (i < g_row)
+	{
+		while (i < g_row)
+			g_map[i++] = malloc(sizeof(char) * g_col);
+		if (read_map() > 0)
+			return (1);
+	}
 	return (0);
 }
