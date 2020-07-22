@@ -6,7 +6,7 @@
 /*   By: yeonkim <yeonkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 13:53:38 by yeonkim           #+#    #+#             */
-/*   Updated: 2020/07/20 19:03:44 by yeonkim          ###   ########.fr       */
+/*   Updated: 2020/07/22 22:09:24 by jyou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,38 +22,6 @@ int		g_col;
 int		g_max_r = 0;
 int		g_max_c = 0;
 int		g_max_size = 0;
-
-int		print_map_dev(char **dp)
-{
-	int	r;
-	int	c;
-
-	r = 0;
-	while (r < g_row)
-	{
-		c = 0;
-		while (c < g_col)
-		{
-			printf("%c", g_map[r][c]);
-			c += 1;
-		}
-		r += 1;
-		printf("\n");
-	}
-    r = 0;
-    while (r < g_row)
-    {
-        c = 0;
-        while (c < g_col)
-        {
-            printf("%d", dp[r][c]);
-            c += 1;
-        }
-        r += 1;
-        printf("\n");
-    }
-	return (0);
-}
 
 char	**init_dp(char **dp)
 {
@@ -167,7 +135,7 @@ int		find_square(void)
 	find_all(dp);
 	find_biggest(dp);
 	fill_square();
-	print_map(dp);
+	print_map();
 	g_max_r = 0;
 	g_max_c = 0;
 	g_max_size = 0;

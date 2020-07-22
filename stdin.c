@@ -3,12 +3,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "valid.h"
+#define BUFF 100000
 
 char    **g_map;
 char    *g_info;
 int     g_info_len;
 int     g_row;
 int     g_col;
+
+char	*ft_strdup(char *src)
+{
+	char	*dst;
+	int		i;
+
+	i = 0;
+	while (src[i])
+		i++;
+	dst = malloc(sizeof(char) * (i + 1));
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = 0;
+	return (dst);
+}
 
 int     get_row(void)
 {
@@ -88,7 +108,8 @@ int     read_one_line(void)
 {
     int     i;
     char    c;
-    char    buf[1024];
+    char    buf[BUFF];
+	char	*str;
 
     i = 0;
     while (read(0, &c, 1) > 0)
@@ -97,7 +118,9 @@ int     read_one_line(void)
             break;
         buf[i++] = c;
     }
-    g_col = strlen(buf);
+	buf[i] = 0;
+	str = ft_strdup(buf);
+    g_col = strlen(str);
     printf("g_col : %d\n", g_col);
     g_map[0] = malloc(sizeof(char) * g_col);
     i = 0;
