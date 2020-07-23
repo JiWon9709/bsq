@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeonkim <yeonkim@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: jyou <jyou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:31:02 by yeonkim           #+#    #+#             */
-/*   Updated: 2020/07/23 07:31:03 by yeonkim          ###   ########.fr       */
+/*   Updated: 2020/07/23 12:35:21 by jyou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ int		count_row(int fd)
 	char	c;
 
 	row = 0;
-	while (read(fd, &c, 1))
+	while (read(fd, &c, 1)) // 맨처음 줄 읽기
 	{
 		if (c == '\n')
 			break ;
 		row += 1;
 	}
-	if (row < 4)
+	if (row < 4) // info가 인수가 적게 들어오면 error
 		return (1);
 	g_info_len = row;
 	g_info = malloc(sizeof(char) * (g_info_len + 1));
 	row = 0;
-	while (read(fd, &c, 1))
+	while (read(fd, &c, 1)) // 행의수 구하기
 		if (c == '\n')
 			row += 1;
 	if (row == 0)
@@ -50,14 +50,14 @@ int		count_row(int fd)
 
 int		count_col(int fd, char c, int row, int col)
 {
-	while (read(fd, &c, 1))
+	while (read(fd, &c, 1)) // 첫줄
 	{
 		if (c == '\n')
 			break ;
 		g_info[row++] = c;
 	}
 	row = 0;
-	while (read(fd, &c, 1) && (++col || 1))
+	while (read(fd, &c, 1) && (++col || 1)) // 1, 0 부터
 		if (c == '\n')
 		{
 			if (g_col != 0 && g_col != col)
@@ -128,7 +128,7 @@ int		scan_map(char *path)
 
 	i = 0;
 	while (i < 3)
-		if ((fd[i++] = open(path, O_RDONLY)) < 0)
+		if ((fd[i++] = open(path, O_RDONLY)) < 0) // 파일이 열리는지
 			return (1);
 	if (count_row(fd[0]) > 0)
 		return (2);

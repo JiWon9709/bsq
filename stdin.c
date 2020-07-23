@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stdin.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: jyou <jyou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:53:23 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/23 06:38:20 by yeonkim          ###   ########.fr       */
+/*   Updated: 2020/07/23 12:35:17 by jyou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int		read_info(void)
 	buf[i] = 0;
 	g_info = ft_strdup(buf);
 	g_info_len = ft_strlen(buf);
-	if ((g_row = get_row()) < 1)
+	if ((g_row = get_row()) < 1) // 행의 개수가 1보다 작으면 에러
 		return (1);
-	if (!is_valid_info())
+	if (!is_valid_info()) // info 검사
 		return (1);
 	return (0);
 }
@@ -76,16 +76,18 @@ int		read_map(void)
 		if (c == '\n')
 		{
 			i += 1;
-			if (j != g_col)
+			if (j != g_col) // 열의 개수가 맞지않을때 에러
 				return (1);
 			j = 0;
-			if (i >= g_row)
+			if (i >= g_row) // 행의 개수가 맞지않을때 에러
 				return (0);
 			read(0, &c, 1);
 		}
 		if (j >= g_col)
 			return (1);
 		g_map[i][j++] = c;
+		if (!is_charset(c))
+			return (1);
 	}
 	return (0);
 }
@@ -102,6 +104,8 @@ int		read_one_line(void)
 		if (c == '\n')
 			break ;
 		buf[i++] = c;
+		if (!is_charset(c))
+			return (1);
 	}
 	buf[i] = 0;
 	g_col = ft_strlen(buf);
@@ -120,16 +124,16 @@ int		ft_stdin(void)
 	int	i;
 	int	j;
 
-	if (read_info() > 0)
+	if (read_info() > 0) // info 읽음
 		return (1);
 	g_map = malloc(sizeof(char *) * g_row);
-	read_one_line();
+	read_one_line(); // 무조건 한줄은 입력받음
 	i = 1;
 	if (i < g_row)
 	{
-		while (i < g_row)
+		while (i < g_row) // 행, 열에 malloc
 			g_map[i++] = malloc(sizeof(char) * g_col);
-		if (read_map() > 0)
+		if (read_map() > 0) // 1,0 행부터 입력받음
 			return (1);
 	}
 	return (0);

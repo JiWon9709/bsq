@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyou <jyou@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: jyou <jyou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 23:32:13 by jyou              #+#    #+#             */
-/*   Updated: 2020/07/23 06:12:38 by yeonkim          ###   ########.fr       */
+/*   Updated: 2020/07/23 12:35:21 by jyou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**init_dp(char **dp)
 		while (j < g_col)
 		{
 			if (g_map[i][j] == g_info[g_info_len - 3])
-				dp[i][j] = 1;
+				dp[i][j] = 1; // . 이면 1
 			else
 				dp[i][j] = 0;
 			j += 1;
@@ -60,13 +60,13 @@ int		find_all(char **dp)
 		c = 1;
 		while (c < g_col)
 		{
-			if (dp[r][c] != 0)
+			if (dp[r][c] != 0) // 장애물이 아닐경우
 			{
 				min = 123456789;
 				min = min < dp[r - 1][c] ? min : dp[r - 1][c];
 				min = min < dp[r][c - 1] ? min : dp[r][c - 1];
 				min = min < dp[r - 1][c - 1] ? min : dp[r - 1][c - 1];
-				dp[r][c] = min + 1;
+				dp[r][c] = min + 1; // 박스안에서 최솟값을 찾으면 +1
 			}
 			c++;
 		}
@@ -126,12 +126,12 @@ int		find_square(void)
 	int		row;
 
 	dp = NULL;
-	dp = init_dp(dp);
+	dp = init_dp(dp); // 초기화
 	find_all(dp);
-	find_biggest(dp);
+	find_biggest(dp); // 가장큰 사각형의 좌표를 구함
 	fill_square();
 	print_map();
-	row = 0;
+	row = 0; // free 하고 초기화
 	while (row < g_row)
 		free(dp[row++]);
 	free(dp);
